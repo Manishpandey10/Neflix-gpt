@@ -1,4 +1,5 @@
 import openai from "../utils/openai";
+import {OpenAI} from "openai";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import lang from "../utils/languageConstants";
@@ -27,6 +28,9 @@ const GptSearchBar = () => {
     console.log(searchText.current.value);
     // Make an API call to GPT API and get Movie Results
 
+    const openai = new OpenAI({
+      apiKey: process.env.REACT_APP_OPENAI_KEY, 
+    });
     const gptQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
       searchText.current.value +
